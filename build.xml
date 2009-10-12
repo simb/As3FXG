@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="AS3 FXG Demo" default="echo" basedir=".">
+	<!--  all properties are in build.properties --> 
+  	<property file="build.properties" /> 
+
+	<taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar"/>
+
+	<target name="clean" >
+		<delete quiet="true" failonerror="false">
+			<fileset dir="bin-debug" includes="**/*.swf"/>
+		</delete>
+	</target>
+
+	<target name="build" depends="clean">
+		<property name="build.src" value="${basedir}/src/${APP_FILE}.as" />
+		<property name="build.bin" value="${basedir}/bin-debug/${APP_FILE}.swf" />
+
+	    <mxmlc file="${build.src}" warnings="false" output="${build.bin}" >
+	    	<target-player>10</target-player>
+	    	<jvmarg line="${mxmlc.jvm.args}"/>
+	       	<library-path dir="libs" append="true">
+             	<include name="**/*.swc" />
+            </library-path>
+            <source-path path-element="${basedir}/src" />
+	    </mxmlc>
+	</target>
+
+	<target name="echo">
+		<echo>
+		This is the default target.  Please re run ant with one of the following commands
+			* build 
+		</echo>
+	</target>
+
+</project>

@@ -1,0 +1,3 @@
+This is a simple demo to show how you can use FXG files as static assets.
+
+Also this application has an ant build script. To use just change the FLEX_HOME property in build.properties to your flex 4 sdk directory.
